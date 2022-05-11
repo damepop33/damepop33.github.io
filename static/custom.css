@@ -1,0 +1,28 @@
+/* Share button for article */
+div.admonition {
+    padding: 1em 1em 1em;
+}
+
+ul.social_white {
+    padding-top: 0px;
+}
+
+ul.social_white a {
+    color: white;
+}
+
+ul.social_white a:hover {
+    color: white;
+}
+
+ul.social_white a.btn {
+    background-color: white;
+}
+
+ul.social_white a.btn:hover {
+    background-color: white;
+}
+
+li.social_txt {
+    font-size: 0.6em
+}
