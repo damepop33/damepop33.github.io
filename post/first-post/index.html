@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="leading-relaxed text-base mx-auto mt-2 w-11/12 sm:w-2/3 sm:max-w-lg font-sans bg-slate-900 text-slate-50 no-underline">
+
+<head>
+  <meta charset="utf-8">
+  
+<title>ブログを作ってみた | damepop33.com</title>
+
+  <link rel="shortcut icon" type="image/png" href="&#x2F;images&#x2F;favicon.png">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link id="stylesheet" rel="stylesheet" type="text/css" href="/main.css">
+  <link id="stylesheet" rel="stylesheet" type="text/css" href="/typography.css">
+  <link rel="stylesheet" href="/foundation.min.css">
+  <script src="/highlight.min.js"></script>
+  <script defer>hljs.highlightAll();</script>
+</head>
+
+<div class="flex items-start border-slate-50">
+  <a href="/">
+    <div class="rounded-full">
+      <img class="rounded-full" width="60" height="auto" src="&#x2F;images&#x2F;logo.png" alt="damepop33.com">
+    </div>
+  </a>
+  <div class="ml-auto">
+    <a class="no-underline text-slate-50" href="/">damepop33.com</a>
+  </div>
+</div>
+<div class="flex justify-end">
+  <a class="flex items-start text-slate-50" href="/about">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+      <path fill-rule="evenodd"
+        d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.75 9.25a.75.75 0 000 1.5h4.59l-2.1 1.95a.75.75 0 001.02 1.1l3.5-3.25a.75.75 0 000-1.1l-3.5-3.25a.75.75 0 10-1.02 1.1l2.1 1.95H6.75z"
+        clip-rule="evenodd" />
+    </svg>
+    about</a>
+</div>
+<hr class="border-amber-200" />
+
+<body onload="getTheme()">
+  <section>
+    <div>
+      
+<p>
+  <div class="text-3xl">ブログを作ってみた</div>
+</p>
+<p>
+  <div class="text-sm mb-2 text-right">2024-02-17</div>
+  <div class="text-right">
+  
+      
+      &ensp;<a class="text-slate-50" href="https://blog.damepop33.com/categories/sheng-huo/">/生活</a>
+      
+  
+  
+      
+      &ensp;<a class="text-slate-50" href="https://blog.damepop33.com/tags/etc/">#etc</a>
+      
+      &ensp;<a class="text-slate-50" href="https://blog.damepop33.com/tags/tech/">#tech</a>
+      
+  
+  </div>
+</p>
+
+<p>
+  <p>ブログサイトを作った。<br />
+IT技術系のやってみた記事や日々の生活などについて投稿する予定。各種フィクションの感想なんかも投稿するかも。<br />
+月2回の更新を目標にする。</p>
+<h2 id="dong-ji"><a class="zola-anchor" href="#dong-ji" aria-label="Anchor link for: dong-ji">動機</a></h2>
+<p>下記の三点。</p>
+<ul>
+<li>文章を書く習慣を身につけたい</li>
+<li>インターネットで見るITエンジニアには自分のサイトを持っている人が多く自分も持ちたいと常々考えていた</li>
+<li>SNSで見かけたスライド(<a href="https://junkyard.song.mu/slides/yapc-hiroshima-2024/">Blogを作り、育み、慈しむ ~ Blog Hacks 2024</a>)に触発された</li>
+</ul>
+<p>以前も作成しようとしたが、サイトを作成して公開した後一つの記事も書かずにやめてしまった。<br />
+今回はとりあえず一つ書いてから公開したので自己ベスト更新と言っていいだろう。言わせてください。</p>
+<h2 id="konosaitonogou-cheng-nituite"><a class="zola-anchor" href="#konosaitonogou-cheng-nituite" aria-label="Anchor link for: konosaitonogou-cheng-nituite">このサイトの構成について</a></h2>
+<p>Zola(Rust製のSSG)で生成した静的ファイルをGithub pagesでホストしている。<br />
+Zolaの使い方なんかは下記のページを参考にした。</p>
+<ul>
+<li><a href="https://blog.ymgyt.io/entry/migrated-blog-to-zola-and-github-pages">🚛 BlogをZola + Github Pagesに移行した</a></li>
+</ul>
+<p>テーマは<a href="https://github.com/kyoheiu/emily_zola_theme">emily_zola_theme</a>を利用。
+デザインが好みだったため。<br />
+ドメインはRoute53で取得、管理している。</p>
+<p>コメント機能や検索機能についてはZolaのtemplatesを理解した後に実装してみたい。<br />
+そもそも（ITエンジニアとしてはあるまじきことに）HTMLとCSSがよくわかってないので、そちらの勉強が先だけども……。</p>
+
+</p>
+<hr class="mb-4 border-amber-200" />
+
+
+
+
+    </div>
+  </section>
+</body>
+
+<div class="flex justify-end my-4">
+  <div class="flex flex-col">
+    <div><a class="underline text-slate-50" href="/">damepop33.com</a>&ensp;&copy; damepop33
+    </div>
+    <div>powered by <a class="text-slate-50" href="https://www.getzola.org/">zola</a>, theme <a class="text-slate-50"
+        href="https://github.com/kyoheiu/emily_zola_theme">emily</a></div>
+  </div>
+</div>
+
+</html>

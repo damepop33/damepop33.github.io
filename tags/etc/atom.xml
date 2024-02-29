@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>damepop33.com - etc</title>
+    <link rel="self" type="application/atom+xml" href="https://blog.damepop33.com/tags/etc/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://blog.damepop33.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-02-17T00:00:00+00:00</updated>
+    <id>https://blog.damepop33.com/tags/etc/atom.xml</id>
+    <entry xml:lang="en">
+        <title>ブログを作ってみた</title>
+        <published>2024-02-17T00:00:00+00:00</published>
+        <updated>2024-02-17T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://blog.damepop33.com/post/first-post/"/>
+        <id>https://blog.damepop33.com/post/first-post/</id>
+        
+        <content type="html" xml:base="https://blog.damepop33.com/post/first-post/">&lt;p&gt;ブログサイトを作った。&lt;br &#x2F;&gt;
+IT技術系のやってみた記事や日々の生活などについて投稿する予定。各種フィクションの感想なんかも投稿するかも。&lt;br &#x2F;&gt;
+月2回の更新を目標にする。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;dong-ji&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#dong-ji&quot; aria-label=&quot;Anchor link for: dong-ji&quot;&gt;動機&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;下記の三点。&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;文章を書く習慣を身につけたい&lt;&#x2F;li&gt;
+&lt;li&gt;インターネットで見るITエンジニアには自分のサイトを持っている人が多く自分も持ちたいと常々考えていた&lt;&#x2F;li&gt;
+&lt;li&gt;SNSで見かけたスライド(&lt;a href=&quot;https:&#x2F;&#x2F;junkyard.song.mu&#x2F;slides&#x2F;yapc-hiroshima-2024&#x2F;&quot;&gt;Blogを作り、育み、慈しむ ~ Blog Hacks 2024&lt;&#x2F;a&gt;)に触発された&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;以前も作成しようとしたが、サイトを作成して公開した後一つの記事も書かずにやめてしまった。&lt;br &#x2F;&gt;
+今回はとりあえず一つ書いてから公開したので自己ベスト更新と言っていいだろう。言わせてください。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;konosaitonogou-cheng-nituite&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#konosaitonogou-cheng-nituite&quot; aria-label=&quot;Anchor link for: konosaitonogou-cheng-nituite&quot;&gt;このサイトの構成について&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;Zola(Rust製のSSG)で生成した静的ファイルをGithub pagesでホストしている。&lt;br &#x2F;&gt;
+Zolaの使い方なんかは下記のページを参考にした。&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;blog.ymgyt.io&#x2F;entry&#x2F;migrated-blog-to-zola-and-github-pages&quot;&gt;🚛 BlogをZola + Github Pagesに移行した&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;テーマは&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;kyoheiu&#x2F;emily_zola_theme&quot;&gt;emily_zola_theme&lt;&#x2F;a&gt;を利用。
+デザインが好みだったため。&lt;br &#x2F;&gt;
+ドメインはRoute53で取得、管理している。&lt;&#x2F;p&gt;
+&lt;p&gt;コメント機能や検索機能についてはZolaのtemplatesを理解した後に実装してみたい。&lt;br &#x2F;&gt;
+そもそも（ITエンジニアとしてはあるまじきことに）HTMLとCSSがよくわかってないので、そちらの勉強が先だけども……。&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

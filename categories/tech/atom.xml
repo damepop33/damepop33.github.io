@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>damepop33.com - tech</title>
+    <link rel="self" type="application/atom+xml" href="https://blog.damepop33.com/categories/tech/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://blog.damepop33.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-02-29T00:00:00+00:00</updated>
+    <id>https://blog.damepop33.com/categories/tech/atom.xml</id>
+    <entry xml:lang="en">
+        <title>自宅サーバにProxmoxをインストールする</title>
+        <published>2024-02-29T00:00:00+00:00</published>
+        <updated>2024-02-29T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://blog.damepop33.com/post/install-proxmox/"/>
+        <id>https://blog.damepop33.com/post/install-proxmox/</id>
+        
+        <content type="html" xml:base="https://blog.damepop33.com/post/install-proxmox/">&lt;p&gt;自宅サーバの仮想化基盤をESXiからProxmoxに変えた。&lt;br &#x2F;&gt;
+なのでタイトルとしては「ESXiからProxmoxに移行した」が正しい。しかし作業としてはVMのマイグレーションなどはせずにESXiを上書きしただけ。そのため、インストールとだけ表記した。&lt;br &#x2F;&gt;
+万が一移行方法の手順を探してこの記事にたどり着いた方がいたら、ご期待には添えられない。ごめんね。&lt;&#x2F;p&gt;
+&lt;p&gt;変更した理由はESXi無償版の提供終了と対応しているIaCツールの多さ。
+それと仕事でVMware製品を触ることがなくなったからというのもある。&lt;&#x2F;p&gt;
+&lt;p&gt;全体として特にハマるところもなく、画面に従ってポチポチしてるだけで作業を完了できた。&lt;&#x2F;p&gt;
+&lt;p&gt;作業自体には関係ないのだが、記事中のスクリーンショットの文字が小さく大変見づらい。後日修正する。修正までは適宜拡大してください。ごめんね。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;huan-jing&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#huan-jing&quot; aria-label=&quot;Anchor link for: huan-jing&quot;&gt;環境&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;インストールした端末のスペックは下記。&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU：i5-10400(6コア12スレッド)&lt;&#x2F;li&gt;
+&lt;li&gt;メモリ：16(8*2)GB&lt;&#x2F;li&gt;
+&lt;li&gt;ディスク：500GB(M.2 SSD)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;数年前にDeskMiniというベアボーンキットを利用して構築したもの。
+ほんとはSSDを増設したりメモリを増設したりとかしたかったのだが、ぐずぐずしていたらいつの間にか時が過ぎていた。
+今後やるかも。やりたい。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;yatutakoto&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#yatutakoto&quot; aria-label=&quot;Anchor link for: yatutakoto&quot;&gt;やったこと&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;ざっくりとした流れは下記。&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;インストーラUSB作成&lt;&#x2F;li&gt;
+&lt;li&gt;インストール&lt;&#x2F;li&gt;
+&lt;li&gt;VM作成テスト&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;1-insutorausbzuo-cheng&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#1-insutorausbzuo-cheng&quot; aria-label=&quot;Anchor link for: 1-insutorausbzuo-cheng&quot;&gt;1.インストーラUSB作成&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.proxmox.com&#x2F;en&#x2F;downloads&quot;&gt;公式サイト&lt;&#x2F;a&gt;からisoファイルをダウンロード。そこら辺に落ちてたUSBメモリにRufusで書き込んだ。普通のOSインストールと同じ流れ（Debianベースなので当然だけども）。
+特に特筆することなし。&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;2-insutoru&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#2-insutoru&quot; aria-label=&quot;Anchor link for: 2-insutoru&quot;&gt;2.インストール&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;01_installer.png&quot; alt=&quot;installer&quot; &#x2F;&gt;
+F2連打などのお馴染みの手順で作成したUSBからBootすると、インストーラ画面が表示される。
+よわよわえんじにあなので、当然Graphicalを選択。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;02_agree.png&quot; alt=&quot;agree&quot; &#x2F;&gt;
+禿同。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;03_disk.png&quot; alt=&quot;disk&quot; &#x2F;&gt;
+インストール先のディスク設定。今回は1つしかないので、このまま。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;04_lang.png&quot; alt=&quot;lang&quot; &#x2F;&gt;
+言語とタイムゾーン、キーボードレイアウトを設定。ここはデフォルトでJapanになっていた。利用しているキーボードレイアウトを選択。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;05_pass.png&quot; alt=&quot;pass&quot; &#x2F;&gt;
+rootパスワードとメールアドレスを設定。ここで設定したメールアドレスに通知やらが行くらしい。特に設定などは必要ないのだろうか？後日確認してみる。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;06_editnetwork.png&quot; alt=&quot;net&quot; &#x2F;&gt;
+ネットワーク設定。ホスト名と静的IPを設定し次へ。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;07_setting.png&quot; alt=&quot;setting&quot; &#x2F;&gt;
+以上これだけ。普通のLinuxインストールとほぼ変わらない。Installをクリックするとインストールが開始される。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;08_success.png&quot; alt=&quot;success&quot; &#x2F;&gt;
+&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;09_done.png&quot; alt=&quot;done&quot; &#x2F;&gt;
+5~10分ほどで完了。再起動後はWebコンソールから操作できる。&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;3-vmzuo-cheng-tesuto&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#3-vmzuo-cheng-tesuto&quot; aria-label=&quot;Anchor link for: 3-vmzuo-cheng-tesuto&quot;&gt;3.VM作成テスト&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;10_webui.png&quot; alt=&quot;webui&quot; &#x2F;&gt;
+WebコンソールのUIはこんな感じ。&lt;&#x2F;p&gt;
+&lt;p&gt;適当なLinuxディストリビューションのisoファイルをアップデート後、VMを作成してみる。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;11_vmsetting.png&quot; alt=&quot;vmsetting&quot; &#x2F;&gt;
+こんな感じ。各種仮想化ソフトを一度でも使ったことがあれば特に困ることはないはず。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;blog.damepop33.com&#x2F;post&#x2F;install-proxmox&#x2F;.&#x2F;12_vmconsole.png&quot; alt=&quot;vmconsole&quot; &#x2F;&gt;
+コンソールも表示できる。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;matome&quot;&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#matome&quot; aria-label=&quot;Anchor link for: matome&quot;&gt;まとめ&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
+&lt;p&gt;ESXiをインストールしたときはデフォルトのisoファイルがNICに対応しておらず、イメージファイルをカスタマイズしなければならなくて大変だった。
+その記憶があったため、今回も時間がかかるかなと漠然と思っていたが、ふたを開けてみると一時間足らずで構築できてしまった。&lt;br &#x2F;&gt;
+インストール時のUIもわかりやすく、快適な体験だった。WebUIのデザインもシンプルで、個人的には好みである。&lt;&#x2F;p&gt;
+&lt;p&gt;冒頭ではつらつら変更理由を述べたが、正直ゴリゴリに使っているサーバというわけでもないので、何が入っていようがあまり関係なかった。ESXiに不満もなかったし。
+新しいツールに触るのは楽しい、というのが結局動機としては一番大きい。&lt;&#x2F;p&gt;
+&lt;p&gt;今後はterraformからの操作を試す。せっかくなので使い倒していろいろ勉強したい。&lt;br &#x2F;&gt;
+まぁ、前回ESXiをインストールしたときも同じ決心をして、結局ほとんど放置していたのだけれど。&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

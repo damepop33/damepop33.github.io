@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="leading-relaxed text-base mx-auto mt-2 w-11/12 sm:w-2/3 sm:max-w-lg font-sans bg-slate-900 text-slate-50 no-underline">
+
+<head>
+  <meta charset="utf-8">
+  
+<title>自宅サーバにProxmoxをインストールする | damepop33.com</title>
+
+  <link rel="shortcut icon" type="image/png" href="&#x2F;images&#x2F;favicon.png">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link id="stylesheet" rel="stylesheet" type="text/css" href="/main.css">
+  <link id="stylesheet" rel="stylesheet" type="text/css" href="/typography.css">
+  <link rel="stylesheet" href="/foundation.min.css">
+  <script src="/highlight.min.js"></script>
+  <script defer>hljs.highlightAll();</script>
+</head>
+
+<div class="flex items-start border-slate-50">
+  <a href="/">
+    <div class="rounded-full">
+      <img class="rounded-full" width="60" height="auto" src="&#x2F;images&#x2F;logo.png" alt="damepop33.com">
+    </div>
+  </a>
+  <div class="ml-auto">
+    <a class="no-underline text-slate-50" href="/">damepop33.com</a>
+  </div>
+</div>
+<div class="flex justify-end">
+  <a class="flex items-start text-slate-50" href="/about">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+      <path fill-rule="evenodd"
+        d="M10 18a8 8 0 100-16 8 8 0 000 16zM6.75 9.25a.75.75 0 000 1.5h4.59l-2.1 1.95a.75.75 0 001.02 1.1l3.5-3.25a.75.75 0 000-1.1l-3.5-3.25a.75.75 0 10-1.02 1.1l2.1 1.95H6.75z"
+        clip-rule="evenodd" />
+    </svg>
+    about</a>
+</div>
+<hr class="border-amber-200" />
+
+<body onload="getTheme()">
+  <section>
+    <div>
+      
+<p>
+  <div class="text-3xl">自宅サーバにProxmoxをインストールする</div>
+</p>
+<p>
+  <div class="text-sm mb-2 text-right">2024-02-29</div>
+  <div class="text-right">
+  
+      
+      &ensp;<a class="text-slate-50" href="https://blog.damepop33.com/categories/tech/">/tech</a>
+      
+  
+  
+      
+      &ensp;<a class="text-slate-50" href="https://blog.damepop33.com/tags/zi-zhai-saba/">#自宅サーバ</a>
+      
+      &ensp;<a class="text-slate-50" href="https://blog.damepop33.com/tags/proxmox/">#Proxmox</a>
+      
+  
+  </div>
+</p>
+
+<p>
+  <p>自宅サーバの仮想化基盤をESXiからProxmoxに変えた。<br />
+なのでタイトルとしては「ESXiからProxmoxに移行した」が正しい。しかし作業としてはVMのマイグレーションなどはせずにESXiを上書きしただけ。そのため、インストールとだけ表記した。<br />
+万が一移行方法の手順を探してこの記事にたどり着いた方がいたら、ご期待には添えられない。ごめんね。</p>
+<p>変更した理由はESXi無償版の提供終了と対応しているIaCツールの多さ。
+それと仕事でVMware製品を触ることがなくなったからというのもある。</p>
+<p>全体として特にハマるところもなく、画面に従ってポチポチしてるだけで作業を完了できた。</p>
+<p>作業自体には関係ないのだが、記事中のスクリーンショットの文字が小さく大変見づらい。後日修正する。修正までは適宜拡大してください。ごめんね。</p>
+<h2 id="huan-jing"><a class="zola-anchor" href="#huan-jing" aria-label="Anchor link for: huan-jing">環境</a></h2>
+<p>インストールした端末のスペックは下記。</p>
+<ul>
+<li>CPU：i5-10400(6コア12スレッド)</li>
+<li>メモリ：16(8*2)GB</li>
+<li>ディスク：500GB(M.2 SSD)</li>
+</ul>
+<p>数年前にDeskMiniというベアボーンキットを利用して構築したもの。
+ほんとはSSDを増設したりメモリを増設したりとかしたかったのだが、ぐずぐずしていたらいつの間にか時が過ぎていた。
+今後やるかも。やりたい。</p>
+<h2 id="yatutakoto"><a class="zola-anchor" href="#yatutakoto" aria-label="Anchor link for: yatutakoto">やったこと</a></h2>
+<p>ざっくりとした流れは下記。</p>
+<ol>
+<li>インストーラUSB作成</li>
+<li>インストール</li>
+<li>VM作成テスト</li>
+</ol>
+<h3 id="1-insutorausbzuo-cheng"><a class="zola-anchor" href="#1-insutorausbzuo-cheng" aria-label="Anchor link for: 1-insutorausbzuo-cheng">1.インストーラUSB作成</a></h3>
+<p><a href="https://www.proxmox.com/en/downloads">公式サイト</a>からisoファイルをダウンロード。そこら辺に落ちてたUSBメモリにRufusで書き込んだ。普通のOSインストールと同じ流れ（Debianベースなので当然だけども）。
+特に特筆することなし。</p>
+<h3 id="2-insutoru"><a class="zola-anchor" href="#2-insutoru" aria-label="Anchor link for: 2-insutoru">2.インストール</a></h3>
+<p><img src="https://blog.damepop33.com/post/install-proxmox/./01_installer.png" alt="installer" />
+F2連打などのお馴染みの手順で作成したUSBからBootすると、インストーラ画面が表示される。
+よわよわえんじにあなので、当然Graphicalを選択。</p>
+<p><img src="https://blog.damepop33.com/post/install-proxmox/./02_agree.png" alt="agree" />
+禿同。</p>
+<p><img src="https://blog.damepop33.com/post/install-proxmox/./03_disk.png" alt="disk" />
+インストール先のディスク設定。今回は1つしかないので、このまま。</p>
+<p><img src="https://blog.damepop33.com/post/install-proxmox/./04_lang.png" alt="lang" />
+言語とタイムゾーン、キーボードレイアウトを設定。ここはデフォルトでJapanになっていた。利用しているキーボードレイアウトを選択。</p>
+<p><img src="https://blog.damepop33.com/post/install-proxmox/./05_pass.png" alt="pass" />
+rootパスワードとメールアドレスを設定。ここで設定したメールアドレスに通知やらが行くらしい。特に設定などは必要ないのだろうか？後日確認してみる。</p>
+<p><img src="https://blog.damepop33.com/post/install-proxmox/./06_editnetwork.png" alt="net" />
+ネットワーク設定。ホスト名と静的IPを設定し次へ。</p>
+<p><img src="https://blog.damepop33.com/post/install-proxmox/./07_setting.png" alt="setting" />
+以上これだけ。普通のLinuxインストールとほぼ変わらない。Installをクリックするとインストールが開始される。</p>
+<p><img src="https://blog.damepop33.com/post/install-proxmox/./08_success.png" alt="success" />
+<img src="https://blog.damepop33.com/post/install-proxmox/./09_done.png" alt="done" />
+5~10分ほどで完了。再起動後はWebコンソールから操作できる。</p>
+<h3 id="3-vmzuo-cheng-tesuto"><a class="zola-anchor" href="#3-vmzuo-cheng-tesuto" aria-label="Anchor link for: 3-vmzuo-cheng-tesuto">3.VM作成テスト</a></h3>
+<p><img src="https://blog.damepop33.com/post/install-proxmox/./10_webui.png" alt="webui" />
+WebコンソールのUIはこんな感じ。</p>
+<p>適当なLinuxディストリビューションのisoファイルをアップデート後、VMを作成してみる。</p>
+<p><img src="https://blog.damepop33.com/post/install-proxmox/./11_vmsetting.png" alt="vmsetting" />
+こんな感じ。各種仮想化ソフトを一度でも使ったことがあれば特に困ることはないはず。</p>
+<p><img src="https://blog.damepop33.com/post/install-proxmox/./12_vmconsole.png" alt="vmconsole" />
+コンソールも表示できる。</p>
+<h2 id="matome"><a class="zola-anchor" href="#matome" aria-label="Anchor link for: matome">まとめ</a></h2>
+<p>ESXiをインストールしたときはデフォルトのisoファイルがNICに対応しておらず、イメージファイルをカスタマイズしなければならなくて大変だった。
+その記憶があったため、今回も時間がかかるかなと漠然と思っていたが、ふたを開けてみると一時間足らずで構築できてしまった。<br />
+インストール時のUIもわかりやすく、快適な体験だった。WebUIのデザインもシンプルで、個人的には好みである。</p>
+<p>冒頭ではつらつら変更理由を述べたが、正直ゴリゴリに使っているサーバというわけでもないので、何が入っていようがあまり関係なかった。ESXiに不満もなかったし。
+新しいツールに触るのは楽しい、というのが結局動機としては一番大きい。</p>
+<p>今後はterraformからの操作を試す。せっかくなので使い倒していろいろ勉強したい。<br />
+まぁ、前回ESXiをインストールしたときも同じ決心をして、結局ほとんど放置していたのだけれど。</p>
+
+</p>
+<hr class="mb-4 border-amber-200" />
+
+
+
+
+    </div>
+  </section>
+</body>
+
+<div class="flex justify-end my-4">
+  <div class="flex flex-col">
+    <div><a class="underline text-slate-50" href="/">damepop33.com</a>&ensp;&copy; damepop33
+    </div>
+    <div>powered by <a class="text-slate-50" href="https://www.getzola.org/">zola</a>, theme <a class="text-slate-50"
+        href="https://github.com/kyoheiu/emily_zola_theme">emily</a></div>
+  </div>
+</div>
+
+</html>
